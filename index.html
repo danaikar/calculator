@@ -55,6 +55,7 @@
     <h1>Weekly Salary Calculator</h1>
 
     <form id="salary-form">
+        <!-- Monday -->
         <div class="day">
             <h3>Monday</h3>
             <div class="shift-input">
@@ -75,20 +76,104 @@
             </div>
         </div>
 
-        <!-- Repeat similar blocks for the other days of the week -->
+        <!-- Repeat the above block for all days of the week -->
+        <!-- Tuesday -->
+        <div class="day">
+            <h3>Tuesday</h3>
+            <div class="shift-input">
+                <label>Start Time:</label>
+                <input type="number" name="tuesday_start_hour" placeholder="7" min="1" max="12">
+                <input type="number" name="tuesday_start_minute" placeholder="00" min="0" max="59">
+                <select name="tuesday_start_am_pm">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+                <label>End Time:</label>
+                <input type="number" name="tuesday_end_hour" placeholder="5" min="1" max="12">
+                <input type="number" name="tuesday_end_minute" placeholder="00" min="0" max="59">
+                <select name="tuesday_end_am_pm">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+            </div>
+        </div>
 
+        <!-- Wednesday -->
+        <div class="day">
+            <h3>Wednesday</h3>
+            <div class="shift-input">
+                <label>Start Time:</label>
+                <input type="number" name="wednesday_start_hour" placeholder="7" min="1" max="12">
+                <input type="number" name="wednesday_start_minute" placeholder="00" min="0" max="59">
+                <select name="wednesday_start_am_pm">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+                <label>End Time:</label>
+                <input type="number" name="wednesday_end_hour" placeholder="5" min="1" max="12">
+                <input type="number" name="wednesday_end_minute" placeholder="00" min="0" max="59">
+                <select name="wednesday_end_am_pm">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Thursday -->
+        <div class="day">
+            <h3>Thursday</h3>
+            <div class="shift-input">
+                <label>Start Time:</label>
+                <input type="number" name="thursday_start_hour" placeholder="7" min="1" max="12">
+                <input type="number" name="thursday_start_minute" placeholder="00" min="0" max="59">
+                <select name="thursday_start_am_pm">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+                <label>End Time:</label>
+                <input type="number" name="thursday_end_hour" placeholder="5" min="1" max="12">
+                <input type="number" name="thursday_end_minute" placeholder="00" min="0" max="59">
+                <select name="thursday_end_am_pm">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Friday -->
+        <div class="day">
+            <h3>Friday</h3>
+            <div class="shift-input">
+                <label>Start Time:</label>
+                <input type="number" name="friday_start_hour" placeholder="7" min="1" max="12">
+                <input type="number" name="friday_start_minute" placeholder="00" min="0" max="59">
+                <select name="friday_start_am_pm">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+                <label>End Time:</label>
+                <input type="number" name="friday_end_hour" placeholder="5" min="1" max="12">
+                <input type="number" name="friday_end_minute" placeholder="00" min="0" max="59">
+                <select name="friday_end_am_pm">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Saturday -->
         <div class="day">
             <h3>Saturday</h3>
             <div class="shift-input">
                 <label>Start Time:</label>
-                <input type="number" name="saturday_start_hour" placeholder="6" min="1" max="12">
+                <input type="number" name="saturday_start_hour" placeholder="7" min="1" max="12">
                 <input type="number" name="saturday_start_minute" placeholder="00" min="0" max="59">
                 <select name="saturday_start_am_pm">
                     <option value="AM">AM</option>
                     <option value="PM">PM</option>
                 </select>
                 <label>End Time:</label>
-                <input type="number" name="saturday_end_hour" placeholder="1" min="1" max="12">
+                <input type="number" name="saturday_end_hour" placeholder="5" min="1" max="12">
                 <input type="number" name="saturday_end_minute" placeholder="00" min="0" max="59">
                 <select name="saturday_end_am_pm">
                     <option value="AM">AM</option>
@@ -97,18 +182,19 @@
             </div>
         </div>
 
+        <!-- Sunday -->
         <div class="day">
             <h3>Sunday</h3>
             <div class="shift-input">
                 <label>Start Time:</label>
-                <input type="number" name="sunday_start_hour" placeholder="12" min="1" max="12">
+                <input type="number" name="sunday_start_hour" placeholder="7" min="1" max="12">
                 <input type="number" name="sunday_start_minute" placeholder="00" min="0" max="59">
                 <select name="sunday_start_am_pm">
                     <option value="AM">AM</option>
                     <option value="PM">PM</option>
                 </select>
                 <label>End Time:</label>
-                <input type="number" name="sunday_end_hour" placeholder="6" min="1" max="12">
+                <input type="number" name="sunday_end_hour" placeholder="5" min="1" max="12">
                 <input type="number" name="sunday_end_minute" placeholder="00" min="0" max="59">
                 <select name="sunday_end_am_pm">
                     <option value="AM">AM</option>
@@ -123,6 +209,5 @@
     <p id="result"></p>
 
     <script src="script.js"></script>
-
 </body>
 </html>

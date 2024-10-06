@@ -1,55 +1,53 @@
-// Helper function to convert 12-hour format to 24-hour format
-function convertTo24Hour(hour, minute, am_pm) {
-    if (am_pm === "PM" && hour !== 12) {
-        hour += 12;
-    } else if (am_pm === "AM" && hour === 12) {
-        hour = 0; // Midnight case
-    }
-    return { hour, minute };
-}
-
-// Calculate hourly wage based on day and time
-function calculateHourlyWage(day, hour) {
-    let baseRate = 6.0;
-    if (day === "Sunday") {
-        baseRate *= 1.5; // 50% raise for Sunday
-    }
-    if (hour >= 22) {
-        baseRate *= 1.25; // 25% raise for after 10 PM
-    }
-    return baseRate;
-}
-
-// Function to calculate the salary for a given day
-function calculateDaySalary(day, startHour, startMinute, endHour, endMinute) {
-    let totalEarnings = 0;
-    while (startHour < endHour || (startHour === endHour && startMinute < endMinute)) {
-        totalEarnings += calculateHourlyWage(day, startHour);
-        startHour++; // Increment the hour
-    }
-    return totalEarnings;
-}
-
 function calculateSalary() {
-    const form = document.getElementById("salary-form");
-    const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
     let totalSalary = 0;
 
-    daysOfWeek.forEach(day => {
-        const startHour = parseInt(form[`${day.toLowerCase()}_start_hour`].value) || 0;
-        const startMinute = parseInt(form[`${day.toLowerCase()}_start_minute`].value) || 0;
-        const startAMPM = form[`${day.toLowerCase()}_start_am_pm`].value;
-        const endHour = parseInt(form[`${day.toLowerCase()}_end_hour`].value) || 0;
-        const endMinute = parseInt(form[`${day.toLowerCase()}_end_minute`].value) || 0;
-        const endAMPM = form[`${day.toLowerCase()}_end_am_pm`].value;
+    days.forEach(day => {
+        const startHour = parseInt(document.querySelector(`input[name="${day}_start_hour"]`).value);
+        const startMinute = parseInt(document.querySelector(`input[name="${day}_start_minute"]`).value) || 0;
+        const startAmPm = document.querySelector(`select[name="${day}_start_am_pm"]`).value;
 
-        const startTime = convertTo24Hour(startHour, startMinute, startAMPM);
-        const endTime = convertTo24Hour(endHour, endMinute, endAMPM);
+        const endHour = parseInt(document.querySelector(`input[name="${day}_end_hour"]`).value);
+        const endMinute = parseInt(document.querySelector(`input[name="${day}_end_minute"]`).value) || 0;
+        const endAmPm = document.querySelector(`select[name="${day}_end_am_pm"]`).value;
 
-        if (startTime.hour !== 0 && endTime.hour !== 0) {
-            totalSalary += calculateDaySalary(day, startTime.hour, startTime.minute, endTime.hour, endTime.minute);
-        }
+        if (isNaN(startHour) || isNaN(endHour)) return; // Skip if the user left inputs empty
+
+        const startTime = convertTo24Hour(startHour, startMinute, startAmPm);
+        const endTime = convertTo24Hour(endHour, endMinute, endAmPm);
+
+        const isSunday = (day === "sunday");
+        totalSalary += calculateDailyWage(startTime, endTime, isSunday);
     });
 
-    document.getElementById("result").innerHTML = `Total Salary for the week: ${totalSalary.toFixed(2)} euros`;
+    document.getElementById('result').innerText = `Total Weekly Salary: €${totalSalary.toFixed(2)}`;
+}
+
+function convertTo24Hour(hour, minute, amPm) {
+    if (amPm === "PM" && hour !== 12) hour += 12;
+    if (amPm === "AM" && hour === 12) hour = 0;
+    return hour * 60 + minute;
+}
+
+function calculateDailyWage(startTime, endTime, isSunday) {
+    let salary = 0;
+    const hourlyRate = 6;
+    const after10pmRate = 7.5;
+    const sundayRate = hourlyRate * 1.5;
+
+    // Handle shifts that go past midnight
+    if (endTime <= startTime) endTime += 24 * 60;
+
+    for (let time = startTime; time < endTime; time += 60) {
+        let currentHour = Math.floor((time / 60) % 24);
+
+        // After 10 PM
+        if (currentHour >= 22 || currentHour < 6) {
+            salary += after10pmRate;
+        } else {
+            salary += (isSunday) ? sundayRate : hourlyRate;
+        }
+    }
+
+    return salary;
 }
