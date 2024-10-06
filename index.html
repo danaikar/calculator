@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salary Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .day {
+            margin-bottom: 20px;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+
+        .shift-input {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .shift-input input[type="number"] {
+            width: 60px;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Weekly Salary Calculator</h1>
+
+    <form id="salary-form">
+        <div class="day">
+            <h3>Monday</h3>
+            <div class="shift-input">
+                <label>Start Time:</label>
+                <input type="number" name="monday_start_hour" placeholder="7" min="1" max="12">
+                <input type="number" name="monday_start_minute" placeholder="00" min="0" max="59">
+                <select name="monday_start_am_pm">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+                <label>End Time:</label>
+                <input type="number" name="monday_end_hour" placeholder="5" min="1" max="12">
+                <input type="number" name="monday_end_minute" placeholder="00" min="0" max="59">
+                <select name="monday_end_am_pm">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Repeat similar blocks for the other days of the week -->
+
+        <div class="day">
+            <h3>Saturday</h3>
+            <div class="shift-input">
+                <label>Start Time:</label>
+                <input type="number" name="saturday_start_hour" placeholder="6" min="1" max="12">
+                <input type="number" name="saturday_start_minute" placeholder="00" min="0" max="59">
+                <select name="saturday_start_am_pm">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+                <label>End Time:</label>
+                <input type="number" name="saturday_end_hour" placeholder="1" min="1" max="12">
+                <input type="number" name="saturday_end_minute" placeholder="00" min="0" max="59">
+                <select name="saturday_end_am_pm">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="day">
+            <h3>Sunday</h3>
+            <div class="shift-input">
+                <label>Start Time:</label>
+                <input type="number" name="sunday_start_hour" placeholder="12" min="1" max="12">
+                <input type="number" name="sunday_start_minute" placeholder="00" min="0" max="59">
+                <select name="sunday_start_am_pm">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+                <label>End Time:</label>
+                <input type="number" name="sunday_end_hour" placeholder="6" min="1" max="12">
+                <input type="number" name="sunday_end_minute" placeholder="00" min="0" max="59">
+                <select name="sunday_end_am_pm">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+            </div>
+        </div>
+
+        <button type="button" onclick="calculateSalary()">Complete</button>
+    </form>
+
+    <p id="result"></p>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
